@@ -4,6 +4,8 @@ import styles from "./styles.module.scss"
 import format from "date-fns/format"
 import enUS from "date-fns/locale/en-US"
 
+import Link from "next/link"
+
 export default function Header(){
   const currentDate = format(new Date(), "MMM d, EEEE", {
     locale: enUS,
@@ -11,7 +13,9 @@ export default function Header(){
 
   return(
     <header className={styles.headerContainer}>
-      <img src="/logo.svg" alt="Podcastr" />
+      <Link href={"/"}>
+        <img src="/logo.svg" alt="Podcastr" />
+      </Link>
 
       <p>The best to you listen, always</p>
 

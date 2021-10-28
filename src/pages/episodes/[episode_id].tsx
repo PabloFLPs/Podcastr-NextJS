@@ -6,12 +6,15 @@ import { format, parseISO } from "date-fns"
 import enUS from "date-fns/locale/en-US"
 import Image from "next/image"
 import Link from "next/link"
+import Head from "next/head"
 import { GetStaticPaths, GetStaticProps } from "next"
 //import {useRouter} from "next/router"
 import { api } from "../../services/api"
 import { convertDurationToTimeString } from "../../utils/convertDurationToTimeString"
 
 import styles from "./episode.module.scss"
+
+import { usePlayer } from "../../contexts/PlayerContext"
 
 type Episode = {
   id: string;
@@ -30,6 +33,8 @@ type EpisodeProps = {
 }
 
 export default function Episode({episode}: EpisodeProps){
+  const {play} = usePlayer()
+
   //hooks can only be accessed by a React component
   //const router = useRouter()
 
@@ -37,6 +42,10 @@ export default function Episode({episode}: EpisodeProps){
     //getting episode_id on /episode url
     //<h1>{router.query.episode_id}</h1>
     <div className={styles.episode}>
+      <Head>
+        <title>{episode.title}</title>
+      </Head>
+
       <div className={styles.thumbnailContainer}>
         <Link href="/">
           <button type="button">
@@ -49,7 +58,7 @@ export default function Episode({episode}: EpisodeProps){
           src={episode.thumbnail}
           objectFit="cover"
         />
-        <button>
+        <button type="button" onClick={() => play(episode)}>
           <img src="/play.svg" alt="Play episode" />
         </button>
       </div>
