@@ -61,7 +61,7 @@ export default function Player(){
     <div className={styles.playerContainer}>
       <header>
         <img src="/playing.svg" alt="Now playing" />
-        <strong>Now playing:</strong>
+        <strong>Now playing...</strong>
       </header>
 
       {episode ? (

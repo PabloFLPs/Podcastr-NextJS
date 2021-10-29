@@ -15,6 +15,20 @@
     border-left: 1px solid var(--green-500);
   }
 
+  .ref {
+    text-decoration: none;
+    font: 400 1rem Inter, sans-serif;
+    font-size: 12px;
+    
+
+    a {
+      color: var(--purple-500);
+      text-decoration: none;
+      font: 400 1rem Inter, sans-serif;
+      font-size: 14px;
+    }
+  }
+
   span {
     margin-left: auto;
     text-transform: capitalize;

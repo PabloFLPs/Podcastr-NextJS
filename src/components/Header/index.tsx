@@ -18,6 +18,7 @@ export default function Header(){
       </Link>
 
       <p>The best to you listen, always</p>
+      <p className={styles.ref}>Made by <a href="https://github.com/PabloFLPs">Pablo Felps</a> based on RocketSeat's NLW 5th edition application</p>
 
       <span>{currentDate}</span>
     </header>
