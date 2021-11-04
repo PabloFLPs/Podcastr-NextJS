@@ -61,7 +61,7 @@ export default function Player(){
   useEffect(() => {
     document.addEventListener("keydown", (event) => {
       //keyPressPlay
-      if(event.key === "p" || event.key === "s"){
+      if(event.key === "p"){
         //cannot read "null", if player is empty
         if(!audioRef.current) return
         if(audioRef.current.paused) audioRef.current.play()
