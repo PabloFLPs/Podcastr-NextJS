@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext } from "react";
+import { createContext, ReactNode, useCallback, useContext } from "react";
 
 import { useState } from "react"
 
@@ -42,7 +42,17 @@ export function PlayerContextProvider({children} :PlayerContextProviderProps){
   const [isLooping, setIsLooping] = useState(false)
   const [isShuffling, setIsShuffling] = useState(false)
 
-  function play(episode){
+  /* ******* TESTING USECALLBACK ******* */
+  /*
+  const play = useCallback(episode => {
+    setEpisodeList([episode])
+    setCurrentEpisodeIndex(0)
+    setIsPlaying(true)
+  }, [setEpisodeList, setCurrentEpisodeIndex, setIsPlaying])
+  */
+  /* ******* TESTING USECALLBACK ******* */
+
+  function play(episode: Episode){
     setEpisodeList([episode])
     setCurrentEpisodeIndex(0)
     setIsPlaying(true)

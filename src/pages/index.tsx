@@ -37,7 +37,9 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps) {
 
   //problem with latestEpisodes
   return (
-    <div className={styles.homepage}>
+    <div
+      className={styles.homepage}
+    >
       <Head>
         <title>Home | Podcastr</title>
       </Head>
@@ -66,7 +68,10 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps) {
                   <span>{episode.durationAsString}</span>
                 </div>
 
-                <button type="button" onClick={() => playList(episodeList, index)}>
+                <button
+                  type="button"
+                  onClick={() => playList(episodeList, index)}
+                >
                   <img src="/play-green.svg" alt="Play episode" />
                 </button>
               </li>

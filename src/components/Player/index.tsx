@@ -1,5 +1,5 @@
 //import "./styles.module.scss"
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { usePlayer } from "../../contexts/PlayerContext"
 import styles from "./styles.module.scss"
 import Image from "next/image"
@@ -30,15 +30,48 @@ export default function Player(){
     clearPlayerState
   } = usePlayer()
 
-  useEffect(() => {
+  /* ******* TESTING USECALLBACK ******* */
+  /*
+  const toggleAudio = useCallback(() => {
     if(!audioRef.current) return
     if(isPlaying) audioRef.current.play()
     else audioRef.current.pause()
   }, [isPlaying])
+  */
+  /* ******* TESTING USECALLBACK ******* */
+
+  useEffect(() => {
+    //toggleAudio
+    if(!audioRef.current) return
+    if(isPlaying) audioRef.current.play()
+    else audioRef.current.pause()
+  }, [isPlaying])
+  
+  /* ******* TESTING USECALLBACK ******* */
+  /*
+  const keyPressPlay = useCallback ((event) => {
+    if(event.key === "p" || event.key === "s"){
+      if(audioRef.current.paused) audioRef.current.play()
+      else audioRef.current.pause()
+    }
+  }, [audioRef.current])
+  */
+ /* ******* TESTING USECALLBACK ******* */
+
+  useEffect(() => {
+    document.addEventListener("keydown", (event) => {
+      //keyPressPlay
+      if(event.key === "p" || event.key === "s"){
+        //cannot read "null", if player is empty
+        if(!audioRef.current) return
+        if(audioRef.current.paused) audioRef.current.play()
+        else audioRef.current.pause()
+      }
+    })
+  }, [audioRef])
 
   function setupProgressListener(){
     audioRef.current.currentTime = 0
-
     audioRef.current.addEventListener("timeupdate", () => {
       setProgress(Math.floor(audioRef.current.currentTime))
     })
@@ -59,6 +92,7 @@ export default function Player(){
 
   return(
     <div className={styles.playerContainer}>
+
       <header>
         <img src="/playing.svg" alt="Now playing" />
         <strong>Now playing...</strong>
@@ -102,7 +136,7 @@ export default function Player(){
         </div>
 
         {episode && (
-          <audio
+          <audio id="podcast"
             src={episode.url}
             ref={audioRef}
             autoPlay
@@ -134,13 +168,11 @@ export default function Player(){
             disabled={!episode}
             onClick={togglePlay}
           >
-
             {isPlaying ? (
               <img src="/pause.svg" alt="Play" />
             ) : (
               <img src="/play.svg" alt="Play" />
             )}
-
           </button>
 
           <button type="button" onClick={playNext} disabled={!episode || !hasNext}>
