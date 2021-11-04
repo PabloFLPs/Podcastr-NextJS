@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "server": "json-server server.json -w -d 250 -p 3030"
+    "server": "json-server server.json -w -p 3030"
   },
   "dependencies": {
     "axios": "^0.24.0",
